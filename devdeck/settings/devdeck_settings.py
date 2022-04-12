@@ -49,8 +49,9 @@ class DevDeckSettings:
 
             validator = Validator(schema)
             if validator.validate(settings, schema):
-                return DevDeckSettings(settings)
+                return DevDeckSettings(validator.normalized(settings))
             raise ValidationError(validator.errors)
+
 
     @staticmethod
     def generate_default(filename, serial_numbers):
